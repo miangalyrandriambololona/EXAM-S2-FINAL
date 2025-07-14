@@ -3,7 +3,7 @@ include("../inc/connexion.php");
 ?>
 <?php
 session_start(); // Démarre la session
-include('../inc/connection.php');
+include('../inc/connexion.php');
 
 $mail = $_POST['mail'];
 $mdp = $_POST['mdp'];
@@ -24,6 +24,6 @@ $last_id = mysqli_insert_id($bdd);
 // Initialiser la session
 $_SESSION['IdMembre'] = $last_id;
 
-header('Location: membres.php');
+header('Location: ../pages/login.php');
 exit; 
 ?>

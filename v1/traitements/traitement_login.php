@@ -27,10 +27,10 @@ if (mysqli_num_rows($resultat) == 0) {
 }
 
 $donnees = mysqli_fetch_assoc($resultat);
-$_SESSION['IdMembre'] = $donnees['id_membre'];
+$_SESSION['id_membre'] = $donnees['id_membre'];
 $_SESSION['Nom'] = $donnees['nom'];
 $_SESSION['Email'] = $donnees['email'];
 
-header('Location: accueil.php');
+header('Location: ../pages/liste_objet.php');
 exit;
 ?>
