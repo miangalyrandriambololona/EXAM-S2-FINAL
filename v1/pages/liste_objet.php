@@ -5,8 +5,6 @@ ini_set('display_errors', 1);
 include("../inc/connexion.php");
 include("../inc/functions.php");
 
-//session_start();
-//var_dump($_SESSION);
 session_start();
 
 $listeObjets = getObjetsMembreConnecte($conn);
@@ -15,32 +13,42 @@ $listeObjets = getObjetsMembreConnecte($conn);
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Mes objets</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/styles/liste_objet.css">
 </head>
 <body>
 
 <h2>Mes objets</h2>
 
-<table border="1">
-    <tr>
-        <th>Nom de l'objet</th>
-        <th>Date de retour (si emprunté)</th>
-        <th>État</th>
-    </tr>
-
+<div class="table-responsive" style="max-width:600px; margin:auto;">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nom de l'objet</th>
+            <th>Date de retour (si emprunté)</th>
+        </tr>
+    </thead>
+    <tbody>
     <?php if (empty($listeObjets)) : ?>
-        <tr><td colspan="3">Aucun objet trouvé.</td></tr>
+        <tr><td colspan="2" class="text-center">Aucun objet trouvé.</td></tr>
     <?php else : ?>
         <?php foreach ($listeObjets as $objet) : ?>
             <tr>
                 <td><?= htmlspecialchars($objet['nom_objet']) ?></td>
                 <td><?= $objet['date_retour'] ? htmlspecialchars($objet['date_retour']) : '-' ?></td>
-                <td><?= $objet['date_retour'] ? 'Emprunté' : 'Disponible' ?></td>
             </tr>
         <?php endforeach; ?>
     <?php endif; ?>
+    </tbody>
 </table>
+</div>
+
+<!-- Bootstrap JS Bundle (optionnel) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
